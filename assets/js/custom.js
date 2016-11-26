@@ -45,20 +45,15 @@
             /*====================================
                WRITE YOUR SCRIPTS BELOW 
            ======================================*/
-            
-            $('input[type="submit"]').mousedown(function(){
-              $(this).css('background', '#2ecc71');
-            });
-            $('input[type="submit"]').mouseup(function(){
-              $(this).css('background', '#1abc9c');
-            });
-
+			
+			$("#login").click(function() {
+				//Call login with Ajax
+			});
+			
             $('#loginform').click(function(){
               $('.login').fadeToggle('slow');
               $(this).toggleClass('green');
             });
-
-
 
             $(document).mouseup(function (e)
             {
