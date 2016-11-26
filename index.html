@@ -51,7 +51,8 @@
                 </ul>
             </div>
 			
-			<h2 id="loginbar"><a href="#" id="loginform">Login</a> | <a href="#">Register</a></h2><div class="login">
+			<h2 id="loginbar"><a id="loginform">Login</a> | <a id="registerform">Register</a></h2>
+			<div class="login" id="loginPopup">
               <div class="arrow-up"></div>
               <div class="formholder">
                 <div class="randompad">
@@ -61,6 +62,26 @@
                      <label name="password">Password</label>
                      <input type="password" />
                      <input type="submit" value="Login" id="login"/>
+
+                   </fieldset>
+                </div>
+              </div>
+            </div>
+			
+			<div class="login" id="registerPopup">
+              <div class="arrow-up" style="margin-left: 50px;"></div>
+              <div class="formholder">
+                <div class="randompad">
+                   <fieldset>
+                     <label name="email">Email</label>
+                     <input type="email" />
+                     <label name="password">Password</label>
+                     <input type="password" />
+					 <label name="password">Confirm Password</label>
+                     <input type="password" />
+                     <input type="checkbox" />
+					 <label name="password">I agree to the <a>terms and conditions</a></label>
+                     <input type="submit" value="Sign Up" id="register"/>
 
                    </fieldset>
                 </div>

@@ -50,9 +50,18 @@
 				//Call login with Ajax
 			});
 			
+			$("#register").click(function() {
+				//Call register with Ajax
+			});
+			
             $('#loginform').click(function(){
-              $('.login').fadeToggle('slow');
-              $(this).toggleClass('green');
+              $('#loginPopup').fadeToggle('slow');
+			  $('#registerPopup').hide();
+            });
+			
+			$('#registerform').click(function(){
+              $('#registerPopup').fadeToggle('slow');
+			  $('#loginPopup').hide();
             });
 
             $(document).mouseup(function (e)
@@ -63,7 +72,6 @@
                     && container.has(e.target).length === 0) // ... nor a descendant of the container
                 {
                     container.hide();
-                    $('#loginform').removeClass('green');
                 }
             });
 
