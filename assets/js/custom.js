@@ -47,15 +47,16 @@
 			======================================*/
 		   
 			//Run when the page loads
-			alert("Loaded");
 			$.post("auth.php", {
 				func: "getUser"
 				})
 			.done(function(data, status) {
 			   if(status == 0) {
+				   alert(data + "is logged in");
 				   $("#loginbar").html('Welcome ' + data + '! <a id="logout">Log Out</a>');
 			   }
 			   else {
+				   alert("no one is logged in");
 				   $("#loginbar").html('<a id="loginform">Login</a> | <a id="registerform">Register</a>');
 			   }
 			});
@@ -63,7 +64,7 @@
 			
 			$("#login").click(function() {
 				//Call login with Ajax
-				$.post( "auth.php", { 
+				$.post("auth.php", { 
 					func: "login",
 					username: $("#loginname").val(), 
 					password: $("#loginpass").val()
@@ -81,12 +82,39 @@
 			
 			$("#register").click(function() {
 				//Call register with Ajax
-				if($("#registerpass") != $("#registerpassconfirm")) {
+				if($("#registername") == "") {
+					alert("You must enter a username");
+				}
+				else if($("#registerpass").val() != $("#registerpassconfirm").val()) {
 					alert("Passwords to not match");
 				}
 				else if(! ($("#registeragree").is(":checked"))) {
 					alert("You must agree to the terms and conditions");
 				}
+				else {
+					$.post("auth.php", {
+						func: "register",
+						username: $("#registername"),
+						password: $("#registerpass")
+						})
+					.done(function(data, status) {
+						if(status == 0) {
+							alert("Failed to register");
+						}
+						else {
+							
+						}
+					});
+				}
+			});
+			
+			$("#logout").click(function() {
+				$.post("auth.php", {
+					func: "logout"
+				})
+				.done(function() {
+					location.reload();
+				});
 			});
 			
             $('#loginform').click(function(){

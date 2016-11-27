@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿<?php
+session_start();
+?>
+
+<!DOCTYPE html>
 <!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
 <!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
 <!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
@@ -50,7 +54,15 @@
                     <li><a href="#contact">CONTACT</a></li>
                 </ul>
             </div>
-			<h2 id="loginbar"><a id="loginform">Login</a> | <a id="registerform">Register</a></h2>
+			<?php
+				if(!empty($_SESSION['username'])) {
+					echo 'Welcome ' . $_SESSION['username'] . '! <a id="logout">Log Out</a>';
+				}
+				else {
+					echo '<h2 id="loginbar"><a id="loginform">Login</a> | <a id="registerform">Register</a></h2>';
+				}
+			?>
+			
 			<div class="login" id="loginPopup">
               <div class="arrow-up"></div>
               <div class="formholder">
@@ -73,7 +85,7 @@
                 <div class="randompad">
                    <fieldset>
                      <label name="email">Username</label>
-                     <input type="text" />
+                     <input type="text" id="registername"/>
                      <label name="password">Password</label>
                      <input type="password" id="registerpass"/>
 					 <label name="password">Confirm Password</label>

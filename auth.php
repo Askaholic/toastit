@@ -13,9 +13,6 @@
 		else if($_POST['func'] == "logout") {
 			logout();
 		}
-		else if($_POST['func'] == "getUser") {
-			getUser();
-		}
 		else if($_POST['func'] == "register") {
 			register();
 		}
@@ -55,17 +52,6 @@
 		session_destroy();
 	}
 	
-	function getUser(){
-		if(empty($_SESSION['username'])) {
-			echo "No one is logged in\n";
-			exit(-1);
-		}
-		else {
-			echo $_SESSION['username'];
-			exit(0);
-		}
-	}
-	
 	function register() {
 		if(!empty($_SESSION['username'])) {
 			echo "Someone is already logged in\n";
@@ -85,7 +71,16 @@
 		ldap_set_option($ldap, LDAP_OPT_PROTOCOL_VERSION, 3);
 		
 		if ($bind = ldap_bind($ldap, LDAPAdmin . "@" . DOMAIN, LDAPPass)) {
-			
+			$base_dn = 'CN='. $_POST['username'] . ',DC=team1,DC=toast, DC=it';
+			$info["objectclass"] = "person";
+			$info['userPassword'] = $_POST['password'];
+
+			if($add = ldap_add($ldap, $base_dn, $info)) {
+				
+			}
+			else {
+				echo "Failed to add user: " . ldap_error($ldap) "\n";
+			}
 		} else {
 		  echo "Could not login to auth server\n";
 		}
