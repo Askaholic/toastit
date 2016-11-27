@@ -1,11 +1,26 @@
 <?php
-	session_Start();
+	session_start();
+	
 	$SERVER = "crispy.team1.toast.it";
 	$DOMAIN = "team1.toast.it";
-	if(empty($_SESSION['username'])) {
-		echo "Someone is already logged in\n";
-	}
+
 	if ( $_SERVER['REQUEST_METHOD'] == 'POST') {
+		if($_POST['func'] == "login") {
+			login();
+		}
+		else if($_POST['func'] == "getUser") {
+			getUser();
+		}
+	}
+	
+	exit(0);
+	
+	function login() {
+		if(!empty($_SESSION['username'])) {
+			echo "Someone is already logged in\n";
+			exit(-2);
+		}
+		
 		$username = $_POST['username'] . "@" . $DOMAIN;
 		$password = $_POST['password'];
 		
@@ -24,7 +39,17 @@
 		} else {
 		  echo "Incorrect username or password\n";
 		}
+		exit(0);
 	}
 	
-	exit(0);
+	function getUser(){
+		if(empty($_SESSION['username'])) {
+			echo "No one is logged in\n";
+			exit(-1);
+		}
+		else {
+			echo $_SESSION['username'];
+			exit(0);
+		}
+	}
 ?>

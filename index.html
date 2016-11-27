@@ -1,8 +1,4 @@
-﻿<?php
-session_start();
-?>
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
 <!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
 <!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
@@ -54,14 +50,7 @@ session_start();
                     <li><a href="#contact">CONTACT</a></li>
                 </ul>
             </div>
-			<?php
-				if(!empty($_SESSION['username'])) {
-					echo '<h2>Logged in as' . $_SESSION['username'] . ' <a id="logout">Log Out</a></h2>' . "\n";
-				}
-				else {
-					echo '<h2 id="loginbar"><a id="loginform">Login</a> | <a id="registerform">Register</a></h2>';
-				}
-			?>
+			<h2 id="loginbar"><a id="loginform">Login</a> | <a id="registerform">Register</a></h2>
 			<div class="login" id="loginPopup">
               <div class="arrow-up"></div>
               <div class="formholder">

@@ -44,16 +44,37 @@
           
             /*====================================
                WRITE YOUR SCRIPTS BELOW 
-           ======================================*/
+			======================================*/
+		   
+			//Run when the page loads
+			$.post("auth.php", {
+				func: "getUser"
+				})
+			.done(function(data, status) {
+			   if(status == 0) {
+				   $("#loginbar").html('Welcome ' + data + '! <a id="logout">Log Out</a>');
+			   }
+			   else {
+				   $("#loginbar").html('<a id="loginform">Login</a> | <a id="registerform">Register</a>');
+			   }
+			});
+			//Event handlers
 			
 			$("#login").click(function() {
 				//Call login with Ajax
 				$.post( "auth.php", { 
+					func: "login",
 					username: $("#loginname").val(), 
 					password: $("#loginpass").val()
 					})
-				.done(function( data ) {
-					alert(data);
+				.done(function( data, status ) {
+					//Check if an error occurred
+					if(status == 0) {
+						$(".login").hide();
+					}
+					else {
+						alert(data);
+					}
 				});
 			});
 			
