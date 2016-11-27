@@ -1,8 +1,8 @@
 <?php
 	session_start();
 	
-	$SERVER = "crispy.team1.toast.it";
-	$DOMAIN = "team1.toast.it";
+	define("SERVER", "crispy.team1.toast.it");
+	define("DOMAIN", "team1.toast.it");
 
 	if ( $_SERVER['REQUEST_METHOD'] == 'POST') {
 		if($_POST['func'] == "login") {
@@ -21,10 +21,10 @@
 			exit(-2);
 		}
 		
-		$username = $_POST['username'] . "@" . $DOMAIN;
+		$username = $_POST['username'] . "@" . DOMAIN;
 		$password = $_POST['password'];
 		
-		$ldap = ldap_connect($SERVER);
+		$ldap = ldap_connect(SERVER);
 		
 		if(! $ldap) {
 			//Could not connect to the server

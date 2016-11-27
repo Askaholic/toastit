@@ -47,6 +47,7 @@
 			======================================*/
 		   
 			//Run when the page loads
+			alert("Loaded");
 			$.post("auth.php", {
 				func: "getUser"
 				})
