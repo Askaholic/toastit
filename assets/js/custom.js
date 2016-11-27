@@ -44,59 +44,59 @@
           
             /*====================================
                WRITE YOUR SCRIPTS BELOW 
-			======================================*/
+            ======================================*/
 		   
-			//Event handlers
-			
-			$("#login").click(function() {
-				//Call login with Ajax
-				$.post("auth.php", { 
-					func: "login",
-					username: $("#loginname").val(), 
-					password: $("#loginpass").val()
-					})
-				.done(function( data, status ) {
-					//Check if an error occurred
-					if(status == 0) {
-						$(".login").hide();
-					}
-					else {
-						alert(data);
-					}
-				});
-			});
-			
-			$("#register").click(function() {
-				//Call register with Ajax
-				if($("#registername") == "") {
-					alert("You must enter a username");
-				}
-				else if($("#registerpass").val() != $("#registerpassconfirm").val()) {
-					alert("Passwords to not match");
-				}
-				else if(! ($("#registeragree").is(":checked"))) {
-					alert("You must agree to the terms and conditions");
-				}
-				else {
-					$.post("auth.php", {
-						func: "register",
-						username: $("#registername"),
-						password: $("#registerpass")
-						})
-					.done(function(data, status) {
-						alert(data);
-					});
-				}
-			});
-			
-			$("#logout").click(function() {
-				$.post("auth.php", {
-					func: "logout"
-					})
-				.done(function(data, status) {
-					location.reload();
-				});
-			});
+            //Event handlers
+
+            $("#login").click(function() {
+                    //Call login with Ajax
+                    $.post("auth.php", { 
+                            func: "login",
+                            username: $("#loginname").val(), 
+                            password: $("#loginpass").val()
+                            })
+                    .done(function(data) {
+                            //Check if an error occurred
+                            if(data == "") {
+                                    location.reload();
+                            }
+                            else {
+                                    alert(data);
+                            }
+                    });
+            });
+
+            $("#register").click(function() {
+                    //Call register with Ajax
+                    if($("#registername") == "") {
+                            alert("You must enter a username");
+                    }
+                    else if($("#registerpass").val() != $("#registerpassconfirm").val()) {
+                            alert("Passwords to not match");
+                    }
+                    else if(! ($("#registeragree").is(":checked"))) {
+                            alert("You must agree to the terms and conditions");
+                    }
+                    else {
+                            $.post("auth.php", {
+                                    func: "register",
+                                    username: $("#registername"),
+                                    password: $("#registerpass")
+                                    })
+                            .done(function(data) {
+                                    alert(data);
+                            });
+                    }
+            });
+
+            $("#logout").click(function() {
+                    $.post("auth.php", {
+                            func: "logout"
+                            })
+                    .done(function() {
+                            location.reload();
+                    });
+            });
 			
             $('#loginform').click(function(){
               $('#loginPopup').fadeToggle('slow');
