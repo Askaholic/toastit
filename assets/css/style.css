@@ -213,7 +213,7 @@ color: #000;
   border-radius: 5px;
   padding-top: 5px;
 }
-.formholder input[type="email"], .formholder input[type="password"] {
+.formholder input[type="text"], .formholder input[type="password"] {
   padding: 7px 5px;
   margin: 10px 0;
   width: 96%;
@@ -226,7 +226,7 @@ color: #000;
   -o-transition: 0.3s linear;
   transition: 0.3s linear;
 }
-.formholder input[type="email"]:focus, .formholder input[type="password"]:focus {
+.formholder input[type="text"]:focus, .formholder input[type="password"]:focus {
   outline: none;
   box-shadow: 0 0 1px 1px #4bbabe;
 }

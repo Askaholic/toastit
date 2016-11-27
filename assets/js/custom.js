@@ -48,9 +48,12 @@
 			
 			$("#login").click(function() {
 				//Call login with Ajax
-				$.post( "auth.php", { username: $("#loginname").value(), password: $("#loginpass").value()})
+				$.post( "auth.php", { 
+					username: $("#loginname").val(), 
+					password: $("#loginpass").val()
+					})
 				.done(function( data ) {
-					alert( "Data Loaded: " + data );
+					alert(data);
 				});
 			});
 			

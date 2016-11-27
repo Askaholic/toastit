@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿<?php
+session_start();
+?>
+
+<!DOCTYPE html>
 <!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
 <!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
 <!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
@@ -50,8 +54,14 @@
                     <li><a href="#contact">CONTACT</a></li>
                 </ul>
             </div>
-			
-			<h2 id="loginbar"><a id="loginform">Login</a> | <a id="registerform">Register</a></h2>
+			<?php
+				if(!empty($_SESSION['username'])) {
+					echo '<h2>Logged in as' . $_SESSION['username'] . ' <a id="logout">Log Out</a></h2>' . "\n";
+				}
+				else {
+					echo '<h2 id="loginbar"><a id="loginform">Login</a> | <a id="registerform">Register</a></h2>';
+				}
+			?>
 			<div class="login" id="loginPopup">
               <div class="arrow-up"></div>
               <div class="formholder">
@@ -73,8 +83,8 @@
               <div class="formholder">
                 <div class="randompad">
                    <fieldset>
-                     <label name="email">Email</label>
-                     <input type="email" />
+                     <label name="email">Username</label>
+                     <input type="text" />
                      <label name="password">Password</label>
                      <input type="password" />
 					 <label name="password">Confirm Password</label>
@@ -346,7 +356,7 @@
   
     <!--FOOTER SECTION -->
     <div id="footer">
-        2016 www.flaky.toast.it | All Right Reserved  
+        2016 www.team1.toast.it | All Right Reserved  
          
     </div>
     <!-- END FOOTER SECTION -->
