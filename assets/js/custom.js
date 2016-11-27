@@ -46,20 +46,6 @@
                WRITE YOUR SCRIPTS BELOW 
 			======================================*/
 		   
-			//Run when the page loads
-			$.post("auth.php", {
-				func: "getUser"
-				})
-			.done(function(data, status) {
-			   if(status == 0) {
-				   alert(data + "is logged in");
-				   $("#loginbar").html('Welcome ' + data + '! <a id="logout">Log Out</a>');
-			   }
-			   else {
-				   alert("no one is logged in");
-				   $("#loginbar").html('<a id="loginform">Login</a> | <a id="registerform">Register</a>');
-			   }
-			});
 			//Event handlers
 			
 			$("#login").click(function() {
@@ -98,12 +84,7 @@
 						password: $("#registerpass")
 						})
 					.done(function(data, status) {
-						if(status == 0) {
-							alert("Failed to register");
-						}
-						else {
-							
-						}
+						alert(data);
 					});
 				}
 			});
@@ -111,8 +92,8 @@
 			$("#logout").click(function() {
 				$.post("auth.php", {
 					func: "logout"
-				})
-				.done(function() {
+					})
+				.done(function(data, status) {
 					location.reload();
 				});
 			});

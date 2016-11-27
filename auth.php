@@ -41,15 +41,17 @@
 		if ($bind = ldap_bind($ldap, $username, $password)) {
 			//The user was found in the system so start a session for them
 			$_SESSION['username'] = $_POST['username'];
+			exit(0);
 		} else {
 		  echo "Incorrect username or password\n";
+		  exit(-1);
 		}
-		exit(0);
 	}
 	
 	function logout() {
 		session_unset();
 		session_destroy();
+		exit(0);
 	}
 	
 	function register() {
@@ -57,9 +59,6 @@
 			echo "Someone is already logged in\n";
 			exit(-2);
 		}
-		
-		$username = $_POST['username'] . "@" . DOMAIN;
-		$password = $_POST['password'];
 		
 		$ldap = ldap_connect(SERVER);
 		
@@ -79,7 +78,7 @@
 				
 			}
 			else {
-				echo "Failed to add user: " . ldap_error($ldap) "\n";
+				echo "Failed to add user: " . ldap_error($ldap) . "\n";
 			}
 		} else {
 		  echo "Could not login to auth server\n";
