@@ -75,7 +75,8 @@
 			$info['userPassword'] = $_POST['password'];
 
 			if($add = ldap_add($ldap, $base_dn, $info)) {
-				
+				echo "User add succeeded\n";
+                                $_SESSION['username'] = $_POST['username'];
 			}
 			else {
 				echo "Failed to add user: " . ldap_error($ldap) . "\n";

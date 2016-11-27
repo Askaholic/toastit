@@ -80,11 +80,12 @@
                     else {
                             $.post("auth.php", {
                                     func: "register",
-                                    username: $("#registername"),
-                                    password: $("#registerpass")
+                                    username: $("#registername").val(),
+                                    password: $("#registerpass").val()
                                     })
                             .done(function(data) {
                                     alert(data);
+                                    location.reload();
                             });
                     }
             });
