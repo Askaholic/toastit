@@ -81,6 +81,12 @@
 			
 			$("#register").click(function() {
 				//Call register with Ajax
+				if($("#registerpass") != $("#registerpassconfirm")) {
+					alert("Passwords to not match");
+				}
+				else if(! ($("#registeragree").is(":checked"))) {
+					alert("You must agree to the terms and conditions");
+				}
 			});
 			
             $('#loginform').click(function(){
