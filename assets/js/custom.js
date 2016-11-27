@@ -48,6 +48,10 @@
 			
 			$("#login").click(function() {
 				//Call login with Ajax
+				$.post( "auth.php", { username: $("#loginname").value(), password: $("#loginpass").value()})
+				.done(function( data ) {
+					alert( "Data Loaded: " + data );
+				});
 			});
 			
 			$("#register").click(function() {
