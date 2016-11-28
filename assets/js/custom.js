@@ -79,13 +79,17 @@
                     }
                     else {
                             $.post("auth.php", {
-                                    func: "register",
-                                    username: $("#registername").val(),
-                                    password: $("#registerpass").val()
-                                    })
+                                func: "register",
+                                username: $("#registername").val(),
+                                password: $("#registerpass").val()
+                                })
                             .done(function(data) {
-                                    alert(data);
+                                if(data == "") {
                                     location.reload();
+                                }
+                                else {
+                                    alert(data);
+                                }
                             });
                     }
             });

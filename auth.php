@@ -3,6 +3,7 @@
 	
 	define("SERVER", "crispy.team1.toast.it");
 	define("DOMAIN", "team1.toast.it");
+        define("DN", "CN=Users,DC=team1,DC=toast,DC=it");
 	define("LDAPAdmin", "kristencsantos");
 	define("LDAPPass", "zar2004");
 
@@ -21,6 +22,10 @@
 	exit(0);
 	
 	function login() {
+                if(empty($_SESSION['password']) || $_SESSION['password'] == "") {
+                    echo "You must enter a password\n";
+                    exit -1;
+                }
 		if(!empty($_SESSION['username'])) {
 			echo "Someone is already logged in\n";
 			exit(-2);
@@ -70,12 +75,19 @@
 		ldap_set_option($ldap, LDAP_OPT_PROTOCOL_VERSION, 3);
 		
 		if ($bind = ldap_bind($ldap, LDAPAdmin . "@" . DOMAIN, LDAPPass)) {
-			$base_dn = 'CN='. $_POST['username'] . ',DC=team1,DC=toast, DC=it';
-			$info["objectclass"] = "person";
-			$info['userPassword'] = $_POST['password'];
+			$base_dn = "CN=" . $_POST['username'] . ',' . DN;
+                        $info['CN'] = $_POST['username'];
+                        $info['displayName'] = $_POST['username'];
+                        $info['samAccountName'] = $_POST['username'];
+                        $info['userAccountControl'] = 512;
+                        $info['accountExpires'] = 0;
+                        $info['description'] = "Added through web";
+                        $info['objectclass'][0] = "top";
+                        $info['objectclass'][1] = "person";
+                        $info['objectclass'][2] = "organizationalPerson";
+                        $info['objectclass'][3] = "user";
 
 			if($add = ldap_add($ldap, $base_dn, $info)) {
-				echo "User add succeeded\n";
                                 $_SESSION['username'] = $_POST['username'];
 			}
 			else {
@@ -84,6 +96,7 @@
 		} else {
 		  echo "Could not login to auth server\n";
 		}
+                ldap_close($ldap);
 		exit(0);
 	}
 ?>
